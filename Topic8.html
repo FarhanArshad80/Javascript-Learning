@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id="userForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="number" id="age" placeholder="Age" required>
+    <button type="submit">Add Row</button>
+  </form>
+  
+  <table border="1" id="userTable" style="margin-top: 15px; width: 300px; text-align: left;">
+    <thead>
+      <tr><th>Name</th><th>Age</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <!-- Dynamic rows go here -->
+    </tbody>
+  </table>
+  
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">What is the DOM?</button>
+      <div class="accordion-content" style="display: none; padding: 10px; background: #f4f4f4;">
+        The Document Object Model is a programming interface for web documents.
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">What is Event Delegation?</button>
+      <div class="accordion-content" style="display: none; padding: 10px; background: #f4f4f4;">
+        It is a pattern of handling events at a higher level in the DOM tree using event bubbling.
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const accordion = document.querySelector('.accordion');
+  
+    accordion.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('accordion-header')) return;
+  
+      const currentItem = e.target.closest('.accordion-item');
+      const currentContent = currentItem.querySelector('.accordion-content');
+  
+      // 1. Close all other items first
+      const allContents = accordion.querySelectorAll('.accordion-content');
+      allContents.forEach((content) => {
+        if (content !== currentContent) {
+          content.style.display = 'none';
+        }
+      });
+  
+      // 2. Toggle the clicked item
+      if (currentContent.style.display === 'block') {
+        currentContent.style.display = 'none';
+      } else {
+        currentContent.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

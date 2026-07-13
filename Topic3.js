@@ -89,3 +89,14 @@ function parent() {
 
 const playTime = parent(); 
 playTime(); // Output: "I am playing with the PlayStation 5"
+
+// closure is the combination of fucntion and lexcical scope or require data
+function outer(){
+  let name = "ali";
+  function inner(){
+    console.log(name);
+  }
+  return inner;
+}
+let a1 = outer();
+a1();
